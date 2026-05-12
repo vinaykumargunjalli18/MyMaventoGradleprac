@@ -2,15 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'master', url: 'https://github.com/vinaykumargunjalli18/MyMavenGradleprac.git'
-            }
-        }
 
         stage('Build') {
             steps {
-                sh 'chmod +x gradlew'
                 sh './gradlew build'
             }
         }
@@ -30,8 +24,9 @@ pipeline {
 
     post {
         success {
-            echo 'Build and deployment successful!'
+            echo 'Build successful!'
         }
+
         failure {
             echo 'Build failed!'
         }
